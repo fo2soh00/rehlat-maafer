@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: OWNER/REPO   # ← TODO: fill with the real GitHub owner/repo once created (e.g. mostafafouad/rehlat-maafer)
+  repo: fo2soh00/rehlat-maafer
   branch: main
 
 media_folder: "public/images/uploads"
