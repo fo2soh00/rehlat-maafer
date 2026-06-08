@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: OWNER/REPO   # ← TODO: fill with the real GitHub owner/repo once created (e.g. mostafafouad/rehlat-maafer)
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+locale: "ar"
+
+collections:
+  - name: "articles"
+    label: "المقالات"
+    label_singular: "مقال"
+    folder: "content/articles"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "العنوان", name: "title", widget: "string" }
+      - { label: "العنوان الفرعي", name: "subtitle", widget: "string", required: false }
+      - { label: "التاريخ (للترتيب)", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "التاريخ بالعربي", name: "date_ar", widget: "string", hint: "مثال: ١٥ يونيو ٢٠٢٦" }
+      - { label: "التصنيف", name: "tag", widget: "select", options: ["بناء", "قيادة", "ذكاء اصطناعي"] }
+      - { label: "مدة القراءة", name: "readTime", widget: "string", hint: "مثال: ٦ دقايق" }
+      - { label: "المقتطف", name: "excerpt", widget: "text" }
+      - { label: "النص", name: "body", widget: "markdown" }
