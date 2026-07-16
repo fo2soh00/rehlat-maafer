@@ -15,6 +15,7 @@ export interface ArticleMeta {
   tag:      string   // Category badge: "بناء" / "قيادة" / "ذكاء اصطناعي"
   readTime: string   // "٦ دقايق"
   excerpt:  string   // One-sentence shown on home page
+  pinned?:  boolean  // when true, floats to top of home list regardless of date
 }
 
 export interface ArticleListItem {
@@ -38,9 +39,12 @@ export function getAllArticles(): ArticleListItem[] {
       const { data } = matter(raw)
       return { slug, meta: data as ArticleMeta }
     })
-    .sort((a, b) =>
-      new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()
-    )
+    .sort((a, b) => {
+      const ap = a.meta.pinned ? 1 : 0
+      const bp = b.meta.pinned ? 1 : 0
+      if (ap !== bp) return bp - ap                 // pinned articles first
+      return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()  // then newest first
+    })
 }
 
 // ── Read one article (for article page) ─────────────────────────────────

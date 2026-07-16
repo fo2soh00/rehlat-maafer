@@ -126,6 +126,9 @@ aside { position:sticky; top:104px; padding-top:48px; }
 .article-content blockquote { border-inline-start:3px solid var(--accent2); padding:2px 22px; margin:2.2em 0; }
 .article-content blockquote p { font-family:var(--display); font-size:1.4rem; color:var(--ink); line-height:1.7; margin:0; }
 .article-content strong { color:var(--ink); font-weight:600; }
+.article-content img { display:block; width:100%; height:auto; margin:2.4em auto; border:1px solid var(--rule); border-radius:6px; background:var(--card); box-shadow:0 4px 18px rgba(21,19,15,.07); }
+.article-content figure { margin:2.4em 0; }
+.article-content figcaption { margin-top:12px; text-align:center; font-size:.85rem; font-weight:300; color:var(--ink-light); }
 .art-foot { margin-top:50px; text-align:center; font-family:var(--display); font-size:20px; color:var(--ink-mid); }
 .art-foot .road { color:var(--accent2); }
 

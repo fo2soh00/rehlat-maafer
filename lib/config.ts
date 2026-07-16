@@ -15,6 +15,6 @@ export const BLOG_CONFIG = {
 
   // ↓ Your contact links
   linkedin:  'https://www.linkedin.com/in/moustafa-fouad-81646b2b6/',
-  whatsapp:  'https://wa.me/message/QC3VU3UP5OTWJ1',
+  whatsapp:  'https://wa.me/message/7CRHXZWXN44PI1',
   email:     'm.fouad@greenolasa.com',
 } as const
