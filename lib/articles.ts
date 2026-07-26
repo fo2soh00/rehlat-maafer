@@ -49,15 +49,33 @@ export function getAllArticles(): ArticleListItem[] {
 
 // ── Read one article (for article page) ─────────────────────────────────
 
+// Next hands us the raw URL segment, which is percent-encoded for non-Latin
+// filenames. decodeURIComponent throws on malformed input, so fall back to the
+// slug as-given — an already-decoded Arabic slug must pass through untouched.
+function safeDecode(slug: string): string {
+  try {
+    return decodeURIComponent(slug)
+  } catch {
+    return slug
+  }
+}
+
 export async function getArticleBySlug(slug: string): Promise<ArticleFull> {
-  const filePath = path.join(ARTICLES_DIR, `${slug}.md`)
+  const decoded = safeDecode(slug)
+
+  // `decoded` comes from a URL segment — never let it escape ARTICLES_DIR.
+  if (decoded.includes('/') || decoded.includes('\\') || decoded.includes('..')) {
+    throw new Error(`Invalid article slug: ${slug}`)
+  }
+
+  const filePath = path.join(ARTICLES_DIR, `${decoded}.md`)
   const raw = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(raw)
 
   const contentHtml = marked.parse(content) as string
 
   return {
-    slug,
+    slug: decoded,
     meta: data as ArticleMeta,
     contentHtml,
   }

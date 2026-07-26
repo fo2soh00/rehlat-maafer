@@ -15,11 +15,12 @@ collections:
     label_singular: "مقال"
     folder: "content/articles"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{en_slug}}"
     extension: "md"
     format: "frontmatter"
     fields:
       - { label: "العنوان", name: "title", widget: "string" }
+      - { label: "الرابط بالإنجليزي (بحروف لاتينية وشرطات)", name: "en_slug", widget: "string", hint: "مثال: hal-anta-biased" }
       - { label: "العنوان الفرعي", name: "subtitle", widget: "string", required: false }
       - { label: "التاريخ (للترتيب)", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { label: "التاريخ بالعربي", name: "date_ar", widget: "string", hint: "مثال: ١٥ يونيو ٢٠٢٦" }
