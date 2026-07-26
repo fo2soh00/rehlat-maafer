@@ -1,5 +1,6 @@
 ---
 title: لا تثق في أرقامك
+en_slug: la-teseq-fe-arqamak
 date: 2026-07-25
 date_ar: ٢٥ يوليو ٢٠٢٦
 tag: بناء

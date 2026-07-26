@@ -1,5 +1,6 @@
 ---
 title: هل أنت Biased
+en_slug: hal-anta-biased
 date: 2026-07-26
 date_ar: ٢٥ يوليو ٢٠٢٦
 tag: قيادة
