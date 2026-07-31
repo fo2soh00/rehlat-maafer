@@ -28,3 +28,15 @@ collections:
       - { label: "مدة القراءة", name: "readTime", widget: "string", hint: "مثال: ٦ دقايق" }
       - { label: "المقتطف", name: "excerpt", widget: "text" }
       - { label: "النص", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "الصفحات"
+    files:
+      - name: "about"
+        label: "الصفحة الشخصية (عني)"
+        file: "content/pages/about.md"
+        format: "frontmatter"
+        fields:
+          - { label: "العنوان", name: "title", widget: "string" }
+          - { label: "العنوان الصغير (فوق العنوان)", name: "kicker", widget: "string" }
+          - { label: "النص", name: "body", widget: "markdown" }
