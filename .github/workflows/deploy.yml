@@ -1,4 +1,4 @@
-name: Deploy to Netlify
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: netlify-deploy
+  group: cf-pages-deploy
   cancel-in-progress: true
 
 jobs:
@@ -31,14 +31,9 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Deploy to Netlify
-        run: >-
-          npx --yes netlify-cli@17 deploy
-          --prod
-          --dir=out
-          --site "$NETLIFY_SITE_ID"
-          --auth "$NETLIFY_AUTH_TOKEN"
-          --message "GitHub Actions: ${{ github.sha }}"
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=moustafafouad --branch=main

@@ -89,19 +89,17 @@ The palette:
 
 ---
 
-## Deploying to Netlify
+## Deploying to Cloudflare Pages
 
-**Option A — Netlify Drop (easiest)**
-1. Run: `npm run build`
-2. Drag the `out/` folder to [netlify.com/drop](https://netlify.com/drop)
-3. Done. You get a live URL instantly.
+Deploys run automatically on every push to `main` via GitHub Actions
+(`.github/workflows/deploy.yml`): it runs `npm ci` → `npm run build` →
+`wrangler pages deploy out --project-name=moustafafouad --branch=main`.
 
-**Option B — GitHub + Netlify (auto-deploy)**
-1. Push this folder to a GitHub repo
-2. Connect the repo in Netlify
-3. Set build command: `npm run build`
-4. Set publish directory: `out`
-5. Every time you push a new article → site auto-updates
+Requires two GitHub repo secrets (Settings → Secrets and variables → Actions):
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN` (Cloudflare → My Profile → API Tokens → "Edit Cloudflare Workers")
+
+Every time you push a new article → the Action builds and publishes to Cloudflare Pages (live at moustafafouad.com).
 
 ---
 

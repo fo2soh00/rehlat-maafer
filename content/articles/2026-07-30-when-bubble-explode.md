@@ -1,8 +1,8 @@
 ---
 title: متى ستنفجر الفقاعة
-en_slug: When-bubble-explode
-date: 2026-07-31
-date_ar: ٣١ يوليو ٢٠٢٦
+en_slug: when-bubble-explode
+date: "2026-07-30"
+date_ar: "٣٠ يوليو ٢٠٢٦"
 tag: ذكاء اصطناعي
 readTime: ٦ دقايق
 excerpt: الفقاعة لا تعني إن الحاجة نفسها وهم. الفقاعة تعني إن سعر الحاجة ابتعد

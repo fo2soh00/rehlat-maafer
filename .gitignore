@@ -16,3 +16,9 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Cloudflare Wrangler local state
+.wrangler/
+
+# Internal Cowork phase handoff notes — never publish to this public repo
+prompts/
