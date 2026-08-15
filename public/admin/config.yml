@@ -27,6 +27,7 @@ collections:
       - { label: "التصنيف", name: "tag", widget: "select", options: ["بناء", "قيادة", "ذكاء اصطناعي"] }
       - { label: "مدة القراءة", name: "readTime", widget: "string", hint: "مثال: ٦ دقايق" }
       - { label: "المقتطف", name: "excerpt", widget: "text" }
+      - { label: "صورة المقال (اختياري)", name: "cover", widget: "image", required: false, hint: "تظهر فوق النص. سيبها فاضية لو مش عايز صورة." }
       - { label: "النص", name: "body", widget: "markdown" }
 
   - name: "pages"

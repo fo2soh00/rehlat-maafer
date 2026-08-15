@@ -15,6 +15,7 @@ export interface ArticleMeta {
   tag:      string   // Category badge: "بناء" / "قيادة" / "ذكاء اصطناعي"
   readTime: string   // "٦ دقايق"
   excerpt:  string   // One-sentence shown on home page
+  cover?:   string   // optional hero image path, e.g. /images/uploads/x.png
   pinned?:  boolean  // when true, floats to top of home list regardless of date
 }
 

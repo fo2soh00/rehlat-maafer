@@ -46,6 +46,10 @@ export default async function ArticlePage({ params }: Props) {
         {meta.subtitle && <p className="sub">{meta.subtitle}</p>}
       </header>
 
+      {meta.cover && (
+        <img className="art-cover" src={meta.cover} alt={meta.title} />
+      )}
+
       <div
         className="article-content"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
