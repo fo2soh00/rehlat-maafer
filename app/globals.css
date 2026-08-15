@@ -123,6 +123,34 @@ aside { position:sticky; top:104px; padding-top:48px; }
 .article-content p { margin-bottom:1.5em; font-size:1.07rem; line-height:2.1; color:var(--ink-mid); font-weight:300; }
 .article-content > p:first-child { font-family:var(--display); font-weight:400; color:var(--ink); font-size:1.3rem; line-height:1.85; }
 .article-content h3 { font-family:var(--display); font-size:1.7rem; color:var(--accent); margin:1.9em 0 .6em; line-height:1.4; }
+
+/* عناوين فرعية — h2 أكبر من h3 و بنفس هوية المدونة */
+.article-content h2 {
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 2.2em 0 .7em;
+  line-height: 1.35;
+}
+
+/* القوائم — RTL, نقط ظاهرة, مسافات مريحة */
+.article-content ul,
+.article-content ol {
+  margin: 1.5em 0;
+  padding-inline-start: 1.6em;
+  color: var(--ink-mid);
+  font-weight: 300;
+  font-size: 1.07rem;
+  line-height: 2.1;
+}
+.article-content ul { list-style: disc; }
+.article-content ol { list-style: decimal; }
+.article-content li { margin-bottom: .85em; padding-inline-start: .3em; }
+.article-content li::marker { color: var(--accent2); }
+.article-content li > p { margin-bottom: .5em; }
+.article-content li:last-child { margin-bottom: 0; }
+
 .article-content blockquote { border-inline-start:3px solid var(--accent2); padding:2px 22px; margin:2.2em 0; }
 .article-content blockquote p { font-family:var(--display); font-size:1.4rem; color:var(--ink); line-height:1.7; margin:0; }
 .article-content strong { color:var(--ink); font-weight:600; }
