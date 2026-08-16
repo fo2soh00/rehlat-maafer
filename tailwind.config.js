@@ -11,14 +11,18 @@ module.exports = {
         paper:          '#FAF7F0',   // warm paper — main background
         card:           '#FFFFFF',   // white — card backgrounds
         ink:            '#15130F',   // near-black — main text
-        'ink-mid':      '#4E4636',   // warm grey-brown — secondary text
-        'ink-light':    '#938775',   // light taupe — meta, dates, captions
+        'ink-mid':      '#2B2722',   // warm dark — secondary text
+        'ink-light':    '#2C4A6E',   // navy — meta, dates, captions
         accent:         '#2C4A6E',   // navy — titles, links, active nav
         'accent-soft':  'rgba(44,74,110,0.10)',  // navy tint — chip background
-        accent2:        '#8E2B20',   // oxblood — dot, borders, "read" link
-        'accent2-soft': 'rgba(142,43,32,0.08)',
-        rule:           '#E2DACA',   // hairline rule
-        'rule-strong':  '#D2C8B2',   // stronger rule (header border)
+        accent2:        '#D97757',   // Claude orange — dots, borders (decoration only)
+        'accent2-soft': 'rgba(217,119,87,0.10)',
+        'accent2-text': '#B24A28',   // darkened orange — accent words in text
+        sky:            '#6CABDD',   // Man City sky — surfaces
+        'sky-tint':     'rgba(108,171,221,0.16)',
+        mustard:        '#E8A23D',   // list bullets
+        rule:           'rgba(108,171,221,0.34)',   // hairline rule
+        'rule-strong':  'rgba(108,171,221,0.55)',   // stronger rule (header border)
       },
       fontFamily: {
         // Loaded via Google Fonts <link> in app/layout.tsx (NOT next/font)
