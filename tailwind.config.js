@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       // ─── Design System Tokens (رحلة معافر) ───────────────────────────
       colors: {
-        paper:          '#FAF7F0',   // warm paper — main background
+        paper:          '#FFFFFF',   // white — main background
         card:           '#FFFFFF',   // white — card backgrounds
         ink:            '#15130F',   // near-black — main text
         'ink-mid':      '#2B2722',   // warm dark — secondary text
