@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getArticleBySlug, getAllSlugs } from '@/lib/articles'
+import Gallery from '@/components/Gallery'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -48,6 +49,10 @@ export default async function ArticlePage({ params }: Props) {
 
       {meta.cover && (
         <img className="art-cover" src={meta.cover} alt={meta.title} />
+      )}
+
+      {meta.gallery && meta.gallery.length > 0 && (
+        <Gallery items={meta.gallery} alt={meta.title} />
       )}
 
       <div

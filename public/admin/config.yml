@@ -28,6 +28,15 @@ collections:
       - { label: "مدة القراءة", name: "readTime", widget: "string", hint: "مثال: ٦ دقايق" }
       - { label: "المقتطف", name: "excerpt", widget: "text" }
       - { label: "صورة المقال (اختياري)", name: "cover", widget: "image", required: false, hint: "تظهر فوق النص. سيبها فاضية لو مش عايز صورة." }
+      - label: "صور المقال (كاروسيل)"
+        name: "gallery"
+        widget: "list"
+        required: false
+        label_singular: "صورة"
+        hint: "ارفع أكتر من صورة. لو صورة واحدة بس هتظهر عادي من غير أسهم."
+        fields:
+          - { label: "الصورة", name: "image", widget: "image" }
+          - { label: "تعليق (اختياري)", name: "caption", widget: "string", required: false }
       - { label: "النص", name: "body", widget: "markdown" }
 
   - name: "pages"

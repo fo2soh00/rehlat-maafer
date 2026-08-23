@@ -16,6 +16,7 @@ export interface ArticleMeta {
   readTime: string   // "٦ دقايق"
   excerpt:  string   // One-sentence shown on home page
   cover?:   string   // optional hero image path, e.g. /images/uploads/x.png
+  gallery?: { image: string; caption?: string }[]  // optional carousel, rendered under the cover
   pinned?:  boolean  // when true, floats to top of home list regardless of date
 }
 
