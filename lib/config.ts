@@ -16,7 +16,7 @@ export const BLOG_CONFIG = {
   // ↓ Author identity. authorRole shows in the author strip and the footer;
   //   authorBio is About-page only since Part C dropped the home sidebar.
   // ← Moustafa may replace this line
-  authorRole: 'مؤسس ستارت أب · الرياض',
+  authorRole: 'رائد أعمال و معافر · الرياض',
   // ← Moustafa may replace this line
   authorBio:  'بديت صيدلي، بس اخترت أبني. هنا بكتب عن رحلة البناء بحلوها ومرّها، الأيام الصعبة، الانتصارات الصغيرة، واللي بتتعلمه في الطريق.',
 

@@ -58,9 +58,19 @@ jobs.push({
   out:   path.join(OUT_DIR, 'default.jpg'),
 })
 
+// A card is a function of its article AND of the shared inputs: the template
+// supplies the layout, lib/config.ts the brand, author name and role. Compare
+// against the newest of all three, or a config edit silently leaves every
+// existing card stale.
+const SHARED_MTIME = Math.max(
+  fs.statSync(TEMPLATE).mtimeMs,
+  fs.statSync(path.join(ROOT, 'lib', 'config.ts')).mtimeMs,
+)
+
 const isFresh = job => {
   if (!fs.existsSync(job.out)) return false
-  return fs.statSync(job.out).mtimeMs > fs.statSync(job.src).mtimeMs
+  const newestInput = Math.max(fs.statSync(job.src).mtimeMs, SHARED_MTIME)
+  return fs.statSync(job.out).mtimeMs > newestInput
 }
 
 const todo = jobs.filter(j => !isFresh(j))
