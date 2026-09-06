@@ -48,6 +48,27 @@ marked.use({
   },
 })
 
+// Some articles hand-write raw <img> tags in the markdown body instead of
+// using ![](). marked passes raw HTML straight through, so the renderer above
+// never sees those — stamp them here after parsing.
+export function stampRawImages(html: string): string {
+  return html.replace(/<img\b[^>]*>/g, tag => {
+    const src = tag.match(/\bsrc\s*=\s*"([^"]*)"/)?.[1]
+    if (!src) return tag
+
+    let out = tag.replace(/\s*\/?>$/, '')
+
+    if (!/\bwidth\s*=/.test(out) && !/\bheight\s*=/.test(out)) {
+      const dim = imageDimensions(src)
+      if (dim) out += ` width="${dim.width}" height="${dim.height}"`
+    }
+    if (!/\bloading\s*=/.test(out))  out += ' loading="lazy"'
+    if (!/\bdecoding\s*=/.test(out)) out += ' decoding="async"'
+
+    return `${out}>`
+  })
+}
+
 // ── Types ───────────────────────────────────────────────────────────────
 
 export interface ArticleMeta {
@@ -139,7 +160,7 @@ export async function getArticleBySlug(slug: string): Promise<ArticleFull> {
   const raw = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(raw)
 
-  const contentHtml = marked.parse(content) as string
+  const contentHtml = stampRawImages(marked.parse(content) as string)
 
   return {
     slug: decoded,
