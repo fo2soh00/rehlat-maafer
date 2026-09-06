@@ -25,6 +25,8 @@ collections:
       - { label: "التاريخ (للترتيب)", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { label: "التاريخ بالعربي", name: "date_ar", widget: "string", hint: "مثال: ١٥ يونيو ٢٠٢٦" }
       - { label: "التصنيف", name: "tag", widget: "select", options: ["بناء", "قيادة", "ذكاء اصطناعي"] }
+      - { label: "السلسلة (اختياري)", name: "series", widget: "select", options: ["ai-application"], required: false }
+      - { label: "رقم الحلقة", name: "episode", widget: "number", value_type: "int", required: false }
       - { label: "مدة القراءة", name: "readTime", widget: "string", hint: "مثال: ٦ دقايق" }
       - { label: "المقتطف", name: "excerpt", widget: "text" }
       - { label: "صورة المقال (اختياري)", name: "cover", widget: "image", required: false, hint: "تظهر فوق النص. سيبها فاضية لو مش عايز صورة." }

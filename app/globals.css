@@ -174,6 +174,40 @@ aside { position:sticky; top:104px; padding-top:48px; }
 .art-foot { margin-top:50px; text-align:center; font-family:var(--display); font-size:20px; color:var(--ink-mid); }
 .art-foot .road { color:var(--accent2-text); }
 
+/* ── SERIES ─────────────────────────────────────────────────────────────── */
+/* Track: `total` dots, published filled, newest wider. Rendered on the series
+   hub, the home series hero and every episode page. */
+.track { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.track-dot { display:block; width:10px; height:10px; border-radius:99px; background:var(--sky-tint); flex:0 0 auto; }
+.track-dot.is-done { background:var(--mustard); }
+.track-dot.is-newest { width:22px; background:var(--accent2); }
+.track-dot.is-current { outline:2px solid var(--accent); outline-offset:2px; }
+a.track-dot:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+
+/* Series hub page */
+.series-lede { font-size:15px; color:var(--ink-mid); line-height:2; max-width:60ch; margin-bottom:26px; }
+.series-meter { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:38px; }
+.series-count { font-size:12.5px; font-weight:700; color:var(--accent); }
+
+.ep-list { list-style:none; margin:0; padding:0; }
+.ep { border-top:1px solid var(--rule); }
+.ep:last-child { border-bottom:1px solid var(--rule); }
+.ep-link { display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:start; padding:20px 4px; transition:background .15s; }
+.ep-link:hover { background:var(--accent-soft); }
+.ep-link:focus-visible { outline:2px solid var(--accent); outline-offset:-2px; }
+.ep-num { font-family:var(--display); font-size:38px; line-height:1; color:var(--accent2); min-width:1.2em; text-align:center; }
+.ep-body { display:block; }
+.ep-title { display:block; font-family:var(--display); font-size:24px; line-height:1.35; color:var(--accent); }
+.ep-sub { display:block; font-size:14px; color:var(--ink-mid); line-height:1.8; margin-top:4px; max-width:60ch; }
+.ep-meta { display:block; font-size:12.5px; color:var(--ink-light); margin-top:8px; }
+.ep-meta .sep { color:var(--rule-strong); }
+
+/* Series bar on an episode page */
+.series-bar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:26px; padding-bottom:18px; border-bottom:1px solid var(--rule); }
+.series-bar-title { font-size:13px; font-weight:700; color:var(--accent); border-bottom:2px solid var(--sky); }
+.series-bar-title:hover { color:var(--ink); }
+.series-bar-count { font-size:12.5px; color:var(--ink-light); }
+
 /* ── SITE FOOTER (minimal) ──────────────────────────────────────────────── */
 .site-foot { border-top:1px solid var(--rule); }
 .site-foot .inner { max-width:1080px; margin:0 auto; padding:26px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }

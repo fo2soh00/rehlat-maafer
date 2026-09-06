@@ -6,6 +6,8 @@ subtitle: الفرق بين الـ API و الـ connector و الـ MCP, و ب�
 date: 2026-09-06
 date_ar: ٦ سبتمبر ٢٠٢٦
 tag: ذكاء اصطناعي
+series: ai-application
+episode: 5
 readTime: ٥ دقائق
 excerpt: >
   الحلقة الخامسة من سلسلة AI Applications for Startups and SME. بعد طبقة

@@ -1,7 +1,10 @@
 import fs   from 'fs'
 import path from 'path'
 import Link from 'next/link'
-import { getArticleBySlug, getAllSlugs, isoDate } from '@/lib/articles'
+import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes } from '@/lib/articles'
+import { SERIES, type SeriesKey } from '@/lib/series'
+import { arabicDigits } from '@/lib/digits'
+import SeriesTrack from '@/components/SeriesTrack'
 import Gallery from '@/components/Gallery'
 import { BLOG_CONFIG } from '@/lib/config'
 import type { Metadata } from 'next'
@@ -78,6 +81,11 @@ export default async function ArticlePage({ params }: Props) {
     },
   }
 
+  // ── Series bar (only for articles that belong to a series) ──────────
+  const seriesKey   = meta.series as SeriesKey | undefined
+  const seriesEntry = seriesKey ? SERIES[seriesKey] : undefined
+  const episodes    = seriesEntry ? getSeriesEpisodes(seriesKey!) : []
+
   return (
     <article className="reading">
       <script
@@ -88,6 +96,18 @@ export default async function ArticlePage({ params }: Props) {
       <Link href="/" className="back">
         <span>→</span><span>كل المقالات</span>
       </Link>
+
+      {seriesEntry && (
+        <div className="series-bar">
+          <Link href={`/series/${seriesKey}/`} className="series-bar-title">
+            {seriesEntry.title}
+          </Link>
+          <SeriesTrack total={seriesEntry.total} episodes={episodes} currentSlug={slug} />
+          <span className="series-bar-count">
+            الحلقة {arabicDigits(meta.episode as number)} من {arabicDigits(seriesEntry.total)}
+          </span>
+        </div>
+      )}
 
       <header className="art-head">
         <div className="meta">

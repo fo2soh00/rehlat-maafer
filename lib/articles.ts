@@ -2,6 +2,7 @@ import fs    from 'fs'
 import path  from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
+import { BLOG_CONFIG } from '@/lib/config'
 
 const ARTICLES_DIR = path.join(process.cwd(), 'content', 'articles')
 
@@ -20,6 +21,8 @@ export interface ArticleMeta {
   cover?:   string   // optional hero image path, e.g. /images/uploads/x.png
   gallery?: { image: string; caption?: string }[]  // optional carousel, rendered under the cover
   pinned?:  boolean  // when true, floats to top of home list regardless of date
+  series?:  string   // series key, e.g. "ai-application" — see lib/series.ts
+  episode?: number   // 0-based episode number within that series
 }
 
 export interface ArticleListItem {
@@ -100,6 +103,72 @@ export async function getArticleBySlug(slug: string): Promise<ArticleFull> {
     slug: decoded,
     meta: data as ArticleMeta,
     contentHtml,
+  }
+}
+
+// ── Series ──────────────────────────────────────────────────────────────
+
+/** Published episodes of one series, ordered by episode number ascending. */
+export function getSeriesEpisodes(seriesKey: string): ArticleListItem[] {
+  return getAllArticles()
+    .filter(a => a.meta.series === seriesKey && typeof a.meta.episode === 'number')
+    .sort((a, b) => (a.meta.episode! - b.meta.episode!))
+}
+
+// ── Streams ─────────────────────────────────────────────────────────────
+
+/** The stream an article belongs to, by its tag. */
+export function streamKeyForTag(tag: string): string | null {
+  const stream = BLOG_CONFIG.streams.find(s => (s.tags as readonly string[]).includes(tag))
+  return stream ? stream.key : null
+}
+
+/** Articles in one stream, newest first, pinned floated to the top. */
+export function getStreamArticles(streamKey: string): ArticleListItem[] {
+  return getAllArticles().filter(a => streamKeyForTag(a.meta.tag) === streamKey)
+}
+
+// ── Adjacent articles (article page end block) ──────────────────────────
+// `next` is always the newer/later neighbour, `prev` the older/earlier one.
+// Series articles step by episode number; everything else steps by date
+// inside its own stream, so «الطريقة» never hands the reader off to «الرحلة».
+
+export interface Adjacent {
+  prev:     ArticleListItem | null
+  next:     ArticleListItem | null
+  isSeries: boolean
+}
+
+export function getAdjacent(slug: string): Adjacent {
+  const all     = getAllArticles()
+  const current = all.find(a => a.slug === slug)
+  if (!current) return { prev: null, next: null, isSeries: false }
+
+  const { series, episode } = current.meta
+
+  if (series && typeof episode === 'number') {
+    const line = getSeriesEpisodes(series)
+    const i    = line.findIndex(a => a.slug === slug)
+    return {
+      prev:     i > 0 ? line[i - 1] : null,
+      next:     i >= 0 && i < line.length - 1 ? line[i + 1] : null,
+      isSeries: true,
+    }
+  }
+
+  // Non-series: order this article's stream strictly by date, newest first.
+  // getStreamArticles floats pinned posts, which would make "older/newer"
+  // lie — so re-sort by date here and ignore `pinned`.
+  const streamKey = streamKeyForTag(current.meta.tag)
+  const line = (streamKey ? getStreamArticles(streamKey) : all)
+    .slice()
+    .sort((a, b) => new Date(isoDate(b.meta.date)).getTime() - new Date(isoDate(a.meta.date)).getTime())
+
+  const i = line.findIndex(a => a.slug === slug)
+  return {
+    prev:     i >= 0 && i < line.length - 1 ? line[i + 1] : null,  // older
+    next:     i > 0 ? line[i - 1] : null,                          // newer
+    isSeries: false,
   }
 }
 

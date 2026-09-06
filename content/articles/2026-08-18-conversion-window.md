@@ -5,6 +5,8 @@ subtitle: سؤال واحد, و شغل شهر
 date: 2026-08-18
 date_ar: ١٨ أغسطس ٢٠٢٦
 tag: ذكاء اصطناعي
+series: ai-application
+episode: 1
 readTime: ٥ دقائق
 excerpt: >
   سألت فريق البرفورمنس سؤال شكله بسيط: العميل بياخد قد إيه من ساعة ما يسجل لحد
