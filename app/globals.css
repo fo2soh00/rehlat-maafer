@@ -61,36 +61,71 @@ a { color:inherit; text-decoration:none; cursor:pointer; }
 .topbar nav a.active { color:var(--accent); border-color:var(--accent); }
 .topbar nav a:hover { color:var(--ink); }
 
-/* ── HOME ───────────────────────────────────────────────────────────────── */
-.shell { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:start; }
-main { padding-top:48px; padding-bottom:80px; }
-.chip { font-size:11px; font-weight:700; letter-spacing:.12em; color:var(--accent); background:var(--accent-soft); padding:4px 11px; border-radius:2px; }
-.note { position:relative; background:var(--card); border:1px solid var(--rule); border-inline-start:3px solid var(--accent2); border-radius:4px; padding:30px 30px 28px; margin-top:24px; box-shadow:0 1px 2px rgba(21,19,15,.04); transition:box-shadow .2s,transform .2s; }
-.note:first-child { margin-top:0; }
-.note:hover { box-shadow:0 8px 22px rgba(21,19,15,.09); transform:translateY(-2px); }
-.note .meta { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
-.note .meta .date { font-size:13px; color:var(--ink-light); }
-.note h2 { font-family:var(--display); font-size:34px; line-height:1.3; margin-bottom:12px; color:var(--accent); transition:color .2s; }
-.note:hover h2 { color:#1F3850; }
-.note p { color:var(--ink-mid); font-weight:300; font-size:15.5px; line-height:2; margin-bottom:16px; max-width:60ch; }
-.read { font-size:13px; font-weight:700; color:var(--accent); border-bottom:2px solid var(--sky); display:inline-flex; align-items:center; gap:8px; }
-.read .arrow { transition:transform .2s; }
-.note:hover .read .arrow { transform:translateX(-4px); }
-.note a.cover { position:absolute; inset:0; }
-.sig-foot { margin-top:40px; text-align:center; font-family:var(--display); font-size:22px; color:var(--ink-mid); }
-.sig-foot .road { color:var(--accent2-text); }
+/* ── SKIP LINK ──────────────────────────────────────────────────────────── */
+.skip { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
+.skip:focus { position:fixed; top:12px; inset-inline-end:12px; z-index:100; width:auto; height:auto; clip:auto; clip-path:none; padding:10px 16px; background:var(--accent); color:#fff; border-radius:4px; font-size:14px; font-weight:700; }
 
-/* ── AUTHOR CARD (home sidebar) ─────────────────────────────────────────── */
-aside { position:sticky; top:104px; padding-top:48px; }
-.author { background:var(--card); border:1px solid var(--rule); border-radius:6px; padding:24px 22px; text-align:center; }
-.author .avatar { width:96px; height:96px; border-radius:50%; object-fit:cover; object-position:50% 16%; margin:0 auto 16px; display:block; border:3px solid var(--rule); box-shadow:0 2px 10px rgba(21,19,15,.12); }
-.author .kicker { font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--ink-light); font-weight:700; margin-bottom:8px; }
-.author .name { font-family:var(--display); font-size:30px; line-height:1; margin-bottom:6px; }
-.author .role { font-size:12.5px; color:var(--accent); font-weight:600; margin-bottom:16px; }
-.author .bio { font-size:13px; font-weight:300; color:var(--ink-mid); line-height:1.95; margin-bottom:18px; }
-.author .links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-.author .links a { font-size:12px; font-weight:600; color:var(--ink-light); }
-.author .links a:hover { color:var(--accent); }
+/* ── HOME ───────────────────────────────────────────────────────────────── */
+.shell { max-width:1080px; margin:0 auto; padding:0 32px; display:block; }
+main { padding-top:48px; padding-bottom:80px; }
+.chip { font-size:12.5px; font-weight:700; color:var(--accent); background:var(--accent-soft); padding:4px 11px; border-radius:2px; }
+.chip-ep { color:#7A4E07; background:rgba(232,162,61,.16); }
+.pin { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--accent2-text); }
+.pin::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent2); }
+.meta .sep { color:var(--rule-strong); font-size:12.5px; }
+
+/* Hero band */
+.hero { padding-bottom:34px; border-bottom:1px solid var(--rule); }
+.hero-title { font-family:var(--display); font-size:44px; line-height:1.25; color:var(--ink); margin-bottom:24px; }
+
+/* Author strip — shared by the hero and the article end block */
+.who-strip { display:flex; align-items:center; flex-wrap:wrap; gap:14px 22px; }
+.who-avatar { width:56px; height:56px; border-radius:50%; object-fit:cover; object-position:50% 16%; border:2px solid var(--rule); flex:0 0 auto; }
+.who-name { font-family:var(--display); font-size:24px; line-height:1; }
+.who-role { font-size:13px; color:var(--accent); font-weight:600; }
+.who-links { display:flex; flex-wrap:wrap; gap:0 18px; }
+.who-links a { font-size:13px; font-weight:700; color:var(--accent); border-bottom:2px solid var(--sky); padding:10px 8px; }
+.who-links a:hover { color:var(--ink); }
+
+/* Series hero */
+.series-hero { margin-top:34px; background:var(--card); border:1px solid var(--rule); border-inline-start:4px solid var(--accent2); border-radius:6px; padding:28px 30px; display:grid; grid-template-columns:1fr auto; gap:26px; align-items:center; }
+.series-hero-kicker { font-size:12.5px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+.series-hero-title { font-family:var(--display); font-size:34px; line-height:1.25; color:var(--accent); margin-bottom:10px; }
+.series-hero-lede { font-size:15px; color:var(--ink-mid); line-height:1.95; max-width:60ch; margin-bottom:18px; }
+.series-hero-links { display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
+.series-hero-links a { font-size:13px; font-weight:700; color:var(--accent); border-bottom:2px solid var(--sky); padding:6px 2px; white-space:nowrap; }
+.series-hero-links a:hover { color:var(--ink); }
+
+/* Streams */
+.streams { margin-top:52px; display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; }
+.stream-title { font-family:var(--display); font-size:28px; line-height:1.2; color:var(--ink); }
+.stream .title-rule { margin:14px 0 26px; }
+
+/* Card — first article in a stream */
+.note { position:relative; background:var(--card); border:1px solid var(--rule); border-inline-start:3px solid var(--accent2); border-radius:4px; padding:26px 26px 24px; box-shadow:0 1px 2px rgba(21,19,15,.04); transition:box-shadow .2s,transform .2s; }
+.note.has-thumb { display:grid; grid-template-columns:1fr 150px; gap:20px; align-items:start; }
+.note-thumb { width:150px; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:4px; border:1px solid var(--rule); }
+.note:hover { box-shadow:0 8px 22px rgba(21,19,15,.09); }
+.note:focus-within { outline:2px solid var(--accent); outline-offset:2px; }
+.note .meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+.note .meta .date { font-size:12.5px; color:var(--ink-light); }
+.note h3 { font-family:var(--display); font-size:28px; line-height:1.3; margin-bottom:12px; color:var(--accent); transition:color .2s; }
+.note h3 a::after { content:''; position:absolute; inset:0; }
+.note:hover h3 { color:#1F3850; }
+.note p { color:var(--ink-mid); font-weight:400; font-size:15.5px; line-height:2; margin-bottom:16px; max-width:60ch; }
+.read { font-size:13px; font-weight:700; color:var(--accent); border-bottom:2px solid var(--sky); display:inline-flex; align-items:center; gap:8px; }
+
+/* Row — every article after the first */
+.row { border-bottom:1px solid var(--rule); }
+.row-link { display:block; padding:14px 0; }
+.row-link:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.row-title { font-family:var(--display); font-size:22px; line-height:1.35; color:var(--accent); margin-bottom:8px; }
+.row-link:hover .row-title { color:#1F3850; }
+.row .meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.row .meta .date { font-size:12.5px; color:var(--ink-light); }
+
+.sig-foot { margin-top:48px; text-align:center; font-family:var(--display); font-size:22px; color:var(--ink-mid); }
+.sig-foot .road { color:var(--accent2-text); }
 
 /* ── ABOUT ──────────────────────────────────────────────────────────────── */
 .wrap { max-width:1000px; margin:0 auto; padding:56px 32px 90px; }
@@ -218,14 +253,38 @@ a.track-dot:focus-visible { outline:2px solid var(--accent); outline-offset:3px;
 .site-foot .links a:hover { color:var(--accent); }
 
 @media (max-width:760px) {
-  .shell { grid-template-columns:1fr; gap:0; }
-  aside { position:static; padding-top:30px; order:-1; }
-  main { padding-top:26px; }
+  main { padding-top:20px; }
+  .hero { padding-bottom:20px; }
+  .hero-title { font-size:32px; margin-bottom:14px; }
+
+  /* Keep the whole masthead above the fold on a 390x844 phone: the avatar,
+     name and role share one row and the links sit under them, instead of
+     the strip wrapping into three full-width rows. */
+  .who-strip { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; align-items:center; }
+  .who-avatar { grid-row:1 / span 2; }
+  .who-name { align-self:end; }
+  .who-role { align-self:start; }
+  .who-links { grid-column:1 / -1; }
+
+  .series-hero { margin-top:24px; grid-template-columns:1fr; gap:16px; padding:20px; }
+  .series-hero-title { font-size:26px; }
+  /* The lede is episode 0's excerpt — full length on desktop, trimmed here so
+     the first stream headline still clears the fold. */
+  .series-hero-lede { margin-bottom:14px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .series-hero-links { flex-direction:row; flex-wrap:wrap; gap:8px 20px; }
+  .streams { margin-top:32px; grid-template-columns:1fr; gap:40px; }
+  .stream .title-rule { margin:8px 0 14px; }
+  .note { padding:20px 20px 18px; }
+  .note .meta { margin-bottom:10px; }
+  .note.has-thumb { grid-template-columns:1fr; }
+  .note-thumb { width:100%; grid-row:1; }
   .about { grid-template-columns:1fr; gap:32px; }
   .portrait { position:static; max-width:280px; margin-inline:auto; }
   .page-title { font-size:40px; }
   .art-head h1 { font-size:34px; }
   .brand { font-size:25px; }
+  .ep-link { grid-template-columns:auto 1fr; gap:14px; }
+  .ep-num { font-size:30px; }
 }
 
 /* ── ARTICLE GALLERY / CAROUSEL ─────────────────────────────────────────── */

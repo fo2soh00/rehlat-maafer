@@ -45,8 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/feed.xml" />
       </head>
       <body>
+        <a href="#content" className="skip">تخطَّ إلى المحتوى</a>
         <Header />
-        <main>{children}</main>
+        <main id="content">{children}</main>
         <Footer />
       </body>
     </html>
