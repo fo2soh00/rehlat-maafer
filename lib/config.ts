@@ -10,11 +10,15 @@ export const BLOG_CONFIG = {
 
   // ↓ Canonical origin — used by metadataBase, sitemap, RSS and JSON-LD.
   siteUrl:   'https://moustafafouad.com',
-  tagline:   'يوميات مؤسس بيبني — بحلوها ومرّها',
+  // ← Moustafa may replace this line
+  tagline:   'يوميات مؤسس بيبني، بحلوها ومرّها',
 
-  // ↓ Author identity (shown on the home author card + about page)
+  // ↓ Author identity. authorRole shows in the author strip and the footer;
+  //   authorBio is About-page only since Part C dropped the home sidebar.
+  // ← Moustafa may replace this line
   authorRole: 'مؤسس ستارت أب · الرياض',
-  authorBio:  'بديت صيدلي، بس اخترت أبني. هنا بكتب عن رحلة البناء بحلوها ومرّها — الأيام الصعبة، الانتصارات الصغيرة، واللي بتتعلمه في الطريق.',
+  // ← Moustafa may replace this line
+  authorBio:  'بديت صيدلي، بس اخترت أبني. هنا بكتب عن رحلة البناء بحلوها ومرّها، الأيام الصعبة، الانتصارات الصغيرة، واللي بتتعلمه في الطريق.',
 
   // ↓ Home page streams. Every article's `tag` must appear in exactly one
   //   stream or the article vanishes from the front page. The second tag in
