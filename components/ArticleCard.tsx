@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArticleListItem } from '@/lib/articles'
-import { arabicDigits } from '@/lib/format'
+import { arabicDigits, formatReadTime } from '@/lib/format'
 import TagChip from '@/components/TagChip'
 
 interface Props {
@@ -24,7 +24,7 @@ export default function ArticleCard({ article }: Props) {
           {meta.readTime && (
             <>
               <span className="sep">·</span>
-              <span className="date">{meta.readTime}</span>
+              <span className="date">{formatReadTime(meta.readTime)}</span>
             </>
           )}
         </div>

@@ -3,7 +3,7 @@ import path from 'path'
 import Link from 'next/link'
 import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes, imageDimensions } from '@/lib/articles'
 import { SERIES, type SeriesKey } from '@/lib/series'
-import { arabicDigits } from '@/lib/format'
+import { arabicDigits, formatReadTime } from '@/lib/format'
 import SeriesTrack from '@/components/SeriesTrack'
 import ArticleEnd  from '@/components/ArticleEnd'
 import TagChip     from '@/components/TagChip'
@@ -125,7 +125,7 @@ export default async function ArticlePage({ params }: Props) {
           {meta.readTime && (
             <>
               <span className="dot" />
-              <span className="date">{meta.readTime} للقراءة</span>
+              <span className="date">{formatReadTime(meta.readTime)} للقراءة</span>
             </>
           )}
         </div>

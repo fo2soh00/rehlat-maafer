@@ -41,11 +41,16 @@ excerpt: "جملة واحدة بتظهر في الصفحة الرئيسية — 
 
 5. Save. The dev server auto-refreshes — the article appears immediately.
 
-### After publishing an article via /admin
+### Publishing checklist
 
-Run `npm run og` and commit `public/og/`. That renders the 1200x630 share card
-used by LinkedIn, WhatsApp and X for the new article. Cards whose JPG is already
-newer than the markdown are skipped, so the command is cheap to re-run.
+- **«مدة القراءة»** — write it in Arabic with Arabic-Indic digits (e.g. `٥ دقائق`).
+  An English value like `5 minutes` is converted for display, but the front
+  matter reads better in Arabic.
+- **`tag`** — must be one of the three: `ذكاء اصطناعي`, `بناء`, `قيادة`. Anything
+  else still publishes, but its chip will not link to a tag page.
+- **`npm run og`** — run it after publishing and commit `public/og/`. That
+  renders the 1200x630 share card used by LinkedIn, WhatsApp and X. Cards whose
+  JPG is already newer than the markdown are skipped, so it is cheap to re-run.
 
 ---
 

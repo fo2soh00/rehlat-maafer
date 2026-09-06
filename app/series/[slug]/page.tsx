@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { getSeriesEpisodes } from '@/lib/articles'
 import { SERIES, type SeriesKey } from '@/lib/series'
 import { BLOG_CONFIG } from '@/lib/config'
-import { arabicDigits } from '@/lib/format'
+import { arabicDigits, formatReadTime } from '@/lib/format'
 import SeriesTrack from '@/components/SeriesTrack'
 
 interface Props {
@@ -86,7 +86,7 @@ export default function SeriesPage({ params }: Props) {
                 {ep.meta.subtitle && <span className="ep-sub">{ep.meta.subtitle}</span>}
                 <span className="ep-meta">
                   {ep.meta.date_ar}
-                  {ep.meta.readTime && <> <span className="sep">·</span> {ep.meta.readTime}</>}
+                  {ep.meta.readTime && <> <span className="sep">·</span> {formatReadTime(ep.meta.readTime)}</>}
                 </span>
               </span>
             </Link>
