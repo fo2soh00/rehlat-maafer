@@ -4,9 +4,31 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { BLOG_CONFIG } from '@/lib/config'
 
+const SITE_TITLE = `${BLOG_CONFIG.blogName} — ${BLOG_CONFIG.siteTitle}`
+
 export const metadata: Metadata = {
-  title:       `${BLOG_CONFIG.blogName} — ${BLOG_CONFIG.siteTitle}`,
+  metadataBase: new URL(BLOG_CONFIG.siteUrl),
+  title: {
+    default:  SITE_TITLE,
+    template: `%s — ${BLOG_CONFIG.siteTitle}`,
+  },
   description: BLOG_CONFIG.tagline,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type:        'website',
+    locale:      'ar_SA',
+    url:         '/',
+    siteName:    BLOG_CONFIG.blogName,
+    title:       SITE_TITLE,
+    description: BLOG_CONFIG.tagline,
+    images:      [{ url: '/og/default.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card:        'summary_large_image',
+    title:       SITE_TITLE,
+    description: BLOG_CONFIG.tagline,
+    images:      ['/og/default.jpg'],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -20,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Rakkas&family=Cairo:wght@300;400;500;600;700;900&display=swap"
           rel="stylesheet"
         />
+        <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/feed.xml" />
       </head>
       <body>
         <Header />

@@ -7,6 +7,9 @@
 export const BLOG_CONFIG = {
   blogName:  'رحلة معافر',
   siteTitle: 'مصطفى فؤاد',
+
+  // ↓ Canonical origin — used by metadataBase, sitemap, RSS and JSON-LD.
+  siteUrl:   'https://moustafafouad.com',
   tagline:   'يوميات مؤسس بيبني — بحلوها ومرّها',
 
   // ↓ Author identity (shown on the home author card + about page)

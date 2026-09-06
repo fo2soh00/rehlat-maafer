@@ -41,6 +41,12 @@ excerpt: "جملة واحدة بتظهر في الصفحة الرئيسية — 
 
 5. Save. The dev server auto-refreshes — the article appears immediately.
 
+### After publishing an article via /admin
+
+Run `npm run og` and commit `public/og/`. That renders the 1200x630 share card
+used by LinkedIn, WhatsApp and X for the new article. Cards whose JPG is already
+newer than the markdown are skipped, so the command is cheap to re-run.
+
 ---
 
 ## Formatting in Articles
