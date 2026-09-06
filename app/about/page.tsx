@@ -58,7 +58,7 @@ export default function About() {
           <div className="frame">
             <div className="photo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/moustafa-portrait.jpg" alt={BLOG_CONFIG.siteTitle} />
+              <img src="/moustafa-portrait-800.jpg" alt={BLOG_CONFIG.siteTitle} width={800} height={800} />
             </div>
             <p className="cap">{BLOG_CONFIG.siteTitle}</p>
           </div>

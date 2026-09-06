@@ -5,6 +5,10 @@ import { useEffect, useRef, useState } from 'react'
 export interface GalleryItem {
   image:    string
   caption?: string
+  // Stamped by the article page (server side) — the browser cannot measure
+  // the file before it loads, and without these the carousel reflows.
+  width?:   number
+  height?:  number
 }
 
 interface Props {
@@ -48,7 +52,15 @@ export default function Gallery({ items, alt }: Props) {
     const only = items[0]
     return (
       <div className="gallery gallery-single">
-        <img className="art-cover" src={only.image} alt={only.caption || alt} loading="lazy" />
+        <img
+          className="art-cover"
+          src={only.image}
+          alt={only.caption || alt}
+          width={only.width}
+          height={only.height}
+          loading="lazy"
+          decoding="async"
+        />
         {only.caption && <p className="gallery-cap">{only.caption}</p>}
       </div>
     )
@@ -82,7 +94,14 @@ export default function Gallery({ items, alt }: Props) {
             aria-roledescription="slide"
             aria-label={`صورة رقم ${i + 1} من ${count}`}
           >
-            <img src={item.image} alt={item.caption || alt} loading="lazy" />
+            <img
+              src={item.image}
+              alt={item.caption || alt}
+              width={item.width}
+              height={item.height}
+              loading="lazy"
+              decoding="async"
+            />
             {item.caption && <p className="gallery-cap">{item.caption}</p>}
           </div>
         ))}

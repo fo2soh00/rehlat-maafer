@@ -11,7 +11,7 @@ export default function AuthorStrip() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="who-avatar"
-        src="/moustafa-portrait.jpg"
+        src="/moustafa-portrait-240.jpg"
         alt={BLOG_CONFIG.siteTitle}
         width={56}
         height={56}

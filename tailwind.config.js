@@ -25,9 +25,9 @@ module.exports = {
         'rule-strong':  'rgba(108,171,221,0.55)',   // stronger rule (header border)
       },
       fontFamily: {
-        // Loaded via Google Fonts <link> in app/layout.tsx (NOT next/font)
-        rakkas: ['"Rakkas"', 'serif'],     // headlines, pull quotes, brand
-        cairo:  ['"Cairo"',  'sans-serif'], // body, UI labels, meta
+        // Self-hosted by next/font in app/layout.tsx, exposed as CSS variables.
+        rakkas: ['var(--font-rakkas)', 'serif'],     // headlines, pull quotes, brand
+        cairo:  ['var(--font-cairo)',  'sans-serif'], // body, UI labels, meta
       },
       maxWidth: {
         shell:   '1080px',  // home + header inner width

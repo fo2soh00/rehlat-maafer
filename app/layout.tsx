@@ -1,10 +1,29 @@
 import type { Metadata } from 'next'
+import { Cairo, Rakkas } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { BLOG_CONFIG } from '@/lib/config'
 
 const SITE_TITLE = `${BLOG_CONFIG.blogName} — ${BLOG_CONFIG.siteTitle}`
+
+// Self-hosted at build time by next/font — no runtime request to Google.
+const cairo = Cairo({
+  subsets:  ['arabic', 'latin'],
+  // 500 is required by Part E (.art-head .sub and the article lede). Cairo is
+  // emitted as discrete static weights, so without it the browser synthesises
+  // a fake medium instead of loading Cairo Medium.
+  weight:   ['400', '500', '600', '700'],
+  variable: '--font-cairo',
+  display:  'swap',
+})
+
+const rakkas = Rakkas({
+  subsets:  ['arabic', 'latin'],
+  weight:   '400',
+  variable: '--font-rakkas',
+  display:  'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(BLOG_CONFIG.siteUrl),
@@ -33,15 +52,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${rakkas.variable}`}>
       <head>
-        {/* Arabic Google Fonts — Rakkas for headlines, Cairo for body (NOT next/font) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rakkas&family=Cairo:wght@300;400;500;600;700;900&display=swap"
-          rel="stylesheet"
-        />
         <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/feed.xml" />
       </head>
       <body>

@@ -2,9 +2,51 @@ import fs    from 'fs'
 import path  from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
+import { imageSize } from 'image-size'
 import { BLOG_CONFIG } from '@/lib/config'
 
 const ARTICLES_DIR = path.join(process.cwd(), 'content', 'articles')
+const PUBLIC_DIR   = path.join(process.cwd(), 'public')
+
+// ── Image dimensions ────────────────────────────────────────────────────
+// Stamping width/height on every <img> reserves the right box before the
+// file arrives, so the article text does not jump as images stream in.
+
+const dimCache = new Map<string, { width: number; height: number } | null>()
+
+export function imageDimensions(src: string): { width: number; height: number } | null {
+  if (dimCache.has(src)) return dimCache.get(src)!
+
+  let result: { width: number; height: number } | null = null
+  // Only local, root-relative paths can be measured; remote ones we skip.
+  if (src.startsWith('/')) {
+    const file = path.join(PUBLIC_DIR, src.split('?')[0].split('#')[0])
+    try {
+      const { width, height } = imageSize(fs.readFileSync(file))
+      if (width && height) result = { width, height }
+    } catch {
+      console.warn(`[articles] image not found, no dimensions emitted: ${src}`)
+    }
+  }
+
+  dimCache.set(src, result)
+  return result
+}
+
+// Emit <img> with intrinsic size + lazy loading for every markdown image.
+const escapeAttr = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+marked.use({
+  renderer: {
+    image(href: string, title: string | null, text: string) {
+      const dim  = imageDimensions(href)
+      const size = dim ? ` width="${dim.width}" height="${dim.height}"` : ''
+      const ttl  = title ? ` title="${escapeAttr(title)}"` : ''
+      return `<img src="${escapeAttr(href)}" alt="${escapeAttr(text ?? '')}"${ttl}${size} loading="lazy" decoding="async">`
+    },
+  },
+})
 
 // ── Types ───────────────────────────────────────────────────────────────
 

@@ -1,7 +1,7 @@
 import fs   from 'fs'
 import path from 'path'
 import Link from 'next/link'
-import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes } from '@/lib/articles'
+import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes, imageDimensions } from '@/lib/articles'
 import { SERIES, type SeriesKey } from '@/lib/series'
 import { arabicDigits } from '@/lib/digits'
 import SeriesTrack from '@/components/SeriesTrack'
@@ -87,6 +87,13 @@ export default async function ArticlePage({ params }: Props) {
   const seriesEntry = seriesKey ? SERIES[seriesKey] : undefined
   const episodes    = seriesEntry ? getSeriesEpisodes(seriesKey!) : []
 
+  // Reserve the box for the cover and every carousel slide before they load.
+  const coverDim = meta.cover ? imageDimensions(meta.cover) : null
+  const gallery  = meta.gallery?.map(item => ({
+    ...item,
+    ...(imageDimensions(item.image) ?? {}),
+  }))
+
   return (
     <article className="reading">
       <script
@@ -126,11 +133,20 @@ export default async function ArticlePage({ params }: Props) {
       </header>
 
       {meta.cover && (
-        <img className="art-cover" src={meta.cover} alt={meta.title} />
+        <img
+          className="art-cover"
+          src={meta.cover}
+          alt={meta.title}
+          width={coverDim?.width}
+          height={coverDim?.height}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
       )}
 
-      {meta.gallery && meta.gallery.length > 0 && (
-        <Gallery items={meta.gallery} alt={meta.title} />
+      {gallery && gallery.length > 0 && (
+        <Gallery items={gallery} alt={meta.title} />
       )}
 
       <div
