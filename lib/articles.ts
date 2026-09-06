@@ -178,6 +178,26 @@ export function getSeriesEpisodes(seriesKey: string): ArticleListItem[] {
     .sort((a, b) => (a.meta.episode! - b.meta.episode!))
 }
 
+// ── Tags ────────────────────────────────────────────────────────────────
+
+/** Articles carrying one tag name, in the same order as getAllArticles(). */
+export function getArticlesByTag(name: string): ArticleListItem[] {
+  return getAllArticles().filter(a => a.meta.tag === name)
+}
+
+/**
+ * Warn once per unknown tag at build time. An article whose tag is not in the
+ * registry still lists and still renders its chip — just not as a link — so a
+ * typo in Decap can never drop a post off the site or fail the build.
+ */
+const warnedTags = new Set<string>()
+
+export function warnUnknownTag(tag: string, slug: string): void {
+  if (warnedTags.has(tag)) return
+  warnedTags.add(tag)
+  console.warn(`[tags] unknown tag "${tag}" in ${slug}.md`)
+}
+
 // ── Streams ─────────────────────────────────────────────────────────────
 
 /** The stream an article belongs to, by its tag. */

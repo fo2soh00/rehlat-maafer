@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArticleListItem } from '@/lib/articles'
-import { arabicDigits } from '@/lib/digits'
+import { arabicDigits } from '@/lib/format'
+import TagChip from '@/components/TagChip'
 
 interface Props {
   article: ArticleListItem
@@ -15,7 +16,7 @@ export default function ArticleCard({ article }: Props) {
       <div className="note-text">
         <div className="meta">
           {meta.pinned && <span className="pin">مثبت</span>}
-          <span className="chip">{meta.tag}</span>
+          <TagChip tag={meta.tag} slug={slug} />
           {typeof meta.episode === 'number' && (
             <span className="chip chip-ep">الحلقة {arabicDigits(meta.episode)}</span>
           )}

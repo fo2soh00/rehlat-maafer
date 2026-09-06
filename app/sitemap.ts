@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getAllArticles, isoDate } from '@/lib/articles'
 import { SERIES } from '@/lib/series'
+import { TAGS } from '@/lib/tags'
 import { BLOG_CONFIG } from '@/lib/config'
 
 export const dynamic = 'force-static'
@@ -25,6 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified:    newest,
       changeFrequency: 'weekly' as const,
       priority:        0.8,
+    })),
+
+    ...TAGS.map(t => ({
+      url:             `${base}/tag/${t.slug}/`,
+      lastModified:    newest,
+      changeFrequency: 'weekly' as const,
+      priority:        0.6,
     })),
 
     ...articles.map(a => ({

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { getSeriesEpisodes } from '@/lib/articles'
 import { SERIES, type SeriesKey } from '@/lib/series'
 import { BLOG_CONFIG } from '@/lib/config'
-import { arabicDigits } from '@/lib/digits'
+import { arabicDigits } from '@/lib/format'
 import SeriesTrack from '@/components/SeriesTrack'
 
 interface Props {

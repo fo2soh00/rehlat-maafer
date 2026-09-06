@@ -29,6 +29,10 @@ export const BLOG_CONFIG = {
     { key: 'journey', label: 'الرحلة',  tags: ['بناء', 'قيادة', 'تسويق'] },
   ],
 
+  // Home + tag pages: every Nth item in the list is a full card (thumbnail if
+  // it has a cover), the rest are compact rows.
+  cardEvery: 4,
+
   // ↓ Your contact links
   linkedin:  'https://www.linkedin.com/in/moustafa-fouad-81646b2b6/',
   whatsapp:  'https://wa.me/message/7CRHXZWXN44PI1',

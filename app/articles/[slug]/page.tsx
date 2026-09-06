@@ -3,9 +3,10 @@ import path from 'path'
 import Link from 'next/link'
 import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes, imageDimensions } from '@/lib/articles'
 import { SERIES, type SeriesKey } from '@/lib/series'
-import { arabicDigits } from '@/lib/digits'
+import { arabicDigits } from '@/lib/format'
 import SeriesTrack from '@/components/SeriesTrack'
 import ArticleEnd  from '@/components/ArticleEnd'
+import TagChip     from '@/components/TagChip'
 import Gallery from '@/components/Gallery'
 import { BLOG_CONFIG } from '@/lib/config'
 import type { Metadata } from 'next'
@@ -119,7 +120,7 @@ export default async function ArticlePage({ params }: Props) {
 
       <header className="art-head">
         <div className="meta">
-          <span className="chip">{meta.tag}</span>
+          <TagChip tag={meta.tag} slug={slug} />
           <span className="date">{meta.date_ar}</span>
           {meta.readTime && (
             <>

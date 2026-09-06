@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArticleListItem } from '@/lib/articles'
-import { arabicDigits } from '@/lib/digits'
+import { arabicDigits } from '@/lib/format'
 
 interface Props {
   /** Planned episode count — the track always renders this many dots. */
