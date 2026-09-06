@@ -8,8 +8,8 @@ interface Props {
 }
 
 /**
- * Every article in a stream after the first one: title + meta line, no
- * excerpt and no thumbnail. The whole row is the link.
+ * The compact entry in the river: title + meta line, no excerpt and no
+ * thumbnail. The whole row is the link.
  */
 export default function ArticleRow({ article }: Props) {
   const { slug, meta } = article

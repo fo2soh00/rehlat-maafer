@@ -198,23 +198,11 @@ export function warnUnknownTag(tag: string, slug: string): void {
   console.warn(`[tags] unknown tag "${tag}" in ${slug}.md`)
 }
 
-// ── Streams ─────────────────────────────────────────────────────────────
-
-/** The stream an article belongs to, by its tag. */
-export function streamKeyForTag(tag: string): string | null {
-  const stream = BLOG_CONFIG.streams.find(s => (s.tags as readonly string[]).includes(tag))
-  return stream ? stream.key : null
-}
-
-/** Articles in one stream, newest first, pinned floated to the top. */
-export function getStreamArticles(streamKey: string): ArticleListItem[] {
-  return getAllArticles().filter(a => streamKeyForTag(a.meta.tag) === streamKey)
-}
-
 // ── Adjacent articles (article page end block) ──────────────────────────
 // `next` is always the newer/later neighbour, `prev` the older/earlier one.
-// Series articles step by episode number; everything else steps by date
-// inside its own stream, so «الطريقة» never hands the reader off to «الرحلة».
+// Series articles step by episode number. Everything else steps by date among
+// articles sharing its tag, so the reader keeps following one thread; if that
+// tag has no neighbour on a side, it falls back to global chronology.
 
 export interface Adjacent {
   prev:     ArticleListItem | null
@@ -239,18 +227,30 @@ export function getAdjacent(slug: string): Adjacent {
     }
   }
 
-  // Non-series: order this article's stream strictly by date, newest first.
-  // getStreamArticles floats pinned posts, which would make "older/newer"
-  // lie — so re-sort by date here and ignore `pinned`.
-  const streamKey = streamKeyForTag(current.meta.tag)
-  const line = (streamKey ? getStreamArticles(streamKey) : all)
-    .slice()
-    .sort((a, b) => new Date(isoDate(b.meta.date)).getTime() - new Date(isoDate(a.meta.date)).getTime())
+  // getAllArticles floats pinned posts, which would make "older/newer" lie —
+  // so order strictly by date here and ignore `pinned`.
+  const byDate = (list: ArticleListItem[]) =>
+    list.slice().sort(
+      (a, b) => new Date(isoDate(b.meta.date)).getTime() - new Date(isoDate(a.meta.date)).getTime(),
+    )
 
-  const i = line.findIndex(a => a.slug === slug)
+  const pick = (list: ArticleListItem[]) => {
+    const line = byDate(list)
+    const i    = line.findIndex(a => a.slug === slug)
+    if (i < 0) return { prev: null, next: null }
+    return {
+      prev: i < line.length - 1 ? line[i + 1] : null,  // older
+      next: i > 0 ? line[i - 1] : null,                // newer
+    }
+  }
+
+  // Same tag first; fall back to global chronology on whichever side is empty.
+  const sameTag = pick(all.filter(a => a.meta.tag === current.meta.tag))
+  const global  = pick(all)
+
   return {
-    prev:     i >= 0 && i < line.length - 1 ? line[i + 1] : null,  // older
-    next:     i > 0 ? line[i - 1] : null,                          // newer
+    prev:     sameTag.prev ?? global.prev,
+    next:     sameTag.next ?? global.next,
     isSeries: false,
   }
 }

@@ -20,15 +20,6 @@ export const BLOG_CONFIG = {
   // ← Moustafa may replace this line
   authorBio:  'بديت صيدلي، بس اخترت أبني. هنا بكتب عن رحلة البناء بحلوها ومرّها، الأيام الصعبة، الانتصارات الصغيرة، واللي بتتعلمه في الطريق.',
 
-  // ↓ Home page streams. Every article's `tag` must appear in exactly one
-  //   stream or the article vanishes from the front page. The second tag in
-  //   each list is a legacy value written before Decap constrained the field
-  //   to three options — keep them until the old posts are re-tagged.
-  streams: [
-    { key: 'method',  label: 'الطريقة', tags: ['ذكاء اصطناعي', 'الذكاء الاصطناعي'] },
-    { key: 'journey', label: 'الرحلة',  tags: ['بناء', 'قيادة', 'تسويق'] },
-  ],
-
   // Home + tag pages: every Nth item in the list is a full card (thumbnail if
   // it has a cover), the rest are compact rows.
   cardEvery: 4,
