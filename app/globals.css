@@ -140,7 +140,7 @@ main { padding-top:48px; padding-bottom:80px; }
 .photo { aspect-ratio:4/5; border-radius:2px; overflow:hidden; background:#EDE6D7; }
 .photo img { width:100%; height:100%; object-fit:cover; object-position:50% 14%; display:block; }
 .frame .cap { font-family:var(--display); font-size:22px; text-align:center; padding:14px 0 16px; color:var(--ink); }
-.bio-long p { color:var(--ink-mid); font-weight:300; font-size:17px; line-height:2.1; margin-bottom:22px; max-width:60ch; }
+.bio-long p { color:var(--ink-mid); font-weight:400; font-size:17px; line-height:2.1; margin-bottom:22px; max-width:60ch; }
 .bio-long p:first-child { font-family:var(--display); font-weight:400; color:var(--ink); font-size:23px; line-height:1.7; }
 .bio-long strong { color:var(--ink); font-weight:600; }
 .contact { margin-top:38px; padding-top:24px; border-top:1px solid var(--rule); }
@@ -158,9 +158,9 @@ main { padding-top:48px; padding-bottom:80px; }
 .art-head .meta .date { font-size:13px; color:var(--ink-light); }
 .art-head .dot { width:3px; height:3px; border-radius:50%; background:var(--rule-strong); }
 .art-head h1 { font-family:var(--display); font-size:46px; line-height:1.2; color:var(--ink); margin-bottom:12px; }
-.art-head .sub { font-family:var(--display); font-size:20px; color:var(--ink-mid); line-height:1.6; }
-.article-content p { margin-bottom:1.5em; font-size:1.07rem; line-height:2.1; color:var(--ink-mid); font-weight:300; }
-.article-content > p:first-child { font-family:var(--display); font-weight:400; color:var(--ink); font-size:1.3rem; line-height:1.85; }
+.art-head .sub { font-family:var(--body); font-weight:500; font-size:19px; color:var(--ink-mid); line-height:1.75; }
+.article-content p { margin-bottom:1.5em; font-size:1.07rem; line-height:2.1; color:var(--ink-mid); font-weight:400; }
+.article-content > p:first-child { font-family:var(--body); font-weight:500; color:var(--ink); font-size:1.15rem; line-height:1.95; }
 .article-content h3 { font-family:var(--display); font-size:1.7rem; color:var(--accent); margin:1.9em 0 .6em; line-height:1.4; }
 
 /* عناوين فرعية — h2 أكبر من h3 و بنفس هوية المدونة */
@@ -179,7 +179,7 @@ main { padding-top:48px; padding-bottom:80px; }
   margin: 1.5em 0;
   padding-inline-start: 1.6em;
   color: var(--ink-mid);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.07rem;
   line-height: 2.1;
 }
@@ -243,6 +243,21 @@ a.track-dot:focus-visible { outline:2px solid var(--accent); outline-offset:3px;
 .series-bar-title:hover { color:var(--ink); }
 .series-bar-count { font-size:12.5px; color:var(--ink-light); }
 
+/* ── ARTICLE END BLOCK ──────────────────────────────────────────────────── */
+.art-end { margin-top:44px; padding-top:26px; border-top:1px solid var(--rule); }
+.adjacent { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+/* next sits at the inline-end so in RTL it lands on the left, matching ← */
+.adj-prev { grid-column:1; }
+.adj-next { grid-column:2; }
+.adj { display:block; background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:16px 18px; transition:box-shadow .2s; }
+.adj-next { border-inline-start:3px solid var(--accent2); }
+.adj:hover { box-shadow:0 6px 18px rgba(21,19,15,.08); }
+.adj:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.adj-label { display:block; font-size:11px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+.adj-next .adj-label { text-align:end; }
+.adj-title { display:block; font-family:var(--display); font-size:19px; line-height:1.4; color:var(--ink); }
+.art-end .who-strip { margin-top:16px; }
+
 /* ── SITE FOOTER (minimal) ──────────────────────────────────────────────── */
 .site-foot { border-top:1px solid var(--rule); }
 .site-foot .inner { max-width:1080px; margin:0 auto; padding:26px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
@@ -283,6 +298,8 @@ a.track-dot:focus-visible { outline:2px solid var(--accent); outline-offset:3px;
   .page-title { font-size:40px; }
   .art-head h1 { font-size:34px; }
   .brand { font-size:25px; }
+  .adjacent { grid-template-columns:1fr; }
+  .adj-prev, .adj-next { grid-column:1; }
   .ep-link { grid-template-columns:auto 1fr; gap:14px; }
   .ep-num { font-size:30px; }
 }

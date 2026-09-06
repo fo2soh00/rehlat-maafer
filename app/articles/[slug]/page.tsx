@@ -5,6 +5,7 @@ import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes } from '@/lib
 import { SERIES, type SeriesKey } from '@/lib/series'
 import { arabicDigits } from '@/lib/digits'
 import SeriesTrack from '@/components/SeriesTrack'
+import ArticleEnd  from '@/components/ArticleEnd'
 import Gallery from '@/components/Gallery'
 import { BLOG_CONFIG } from '@/lib/config'
 import type { Metadata } from 'next'
@@ -138,6 +139,8 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       <p className="art-foot">✦ <span className="road">يتبع</span> ✦</p>
+
+      <ArticleEnd slug={slug} />
 
       <Link href="/" className="back">
         <span>→</span><span>عودة للمقالات</span>
