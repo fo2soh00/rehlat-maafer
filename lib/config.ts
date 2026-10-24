@@ -10,6 +10,10 @@ export const BLOG_CONFIG = {
 
   // ↓ Canonical origin — used by metadataBase, sitemap, RSS and JSON-LD.
   siteUrl:   'https://moustafafouad.com',
+
+  // ↓ Google Tag Manager container — loaded on every page by app/layout.tsx.
+  //   GA4 is configured inside GTM, not in code.
+  gtmId:     'GTM-PJD46LCB',
   // ← Moustafa may replace this line
   tagline:   'يوميات مؤسس بيبني، بحلوها ومرّها',
 
