@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cairo, Rakkas } from 'next/font/google'
+import { Cairo } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/Header'
@@ -13,16 +13,9 @@ const cairo = Cairo({
   subsets:  ['arabic', 'latin'],
   // 500 is required by Part E (.art-head .sub and the article lede). Cairo is
   // emitted as discrete static weights, so without it the browser synthesises
-  // a fake medium instead of loading Cairo Medium.
-  weight:   ['400', '500', '600', '700'],
+  // a fake medium instead of loading Cairo Medium. 800 is the display weight.
+  weight:   ['400', '500', '600', '700', '800'],
   variable: '--font-cairo',
-  display:  'swap',
-})
-
-const rakkas = Rakkas({
-  subsets:  ['arabic', 'latin'],
-  weight:   '400',
-  variable: '--font-rakkas',
   display:  'swap',
 })
 
@@ -53,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${rakkas.variable}`}>
+    <html lang="ar" dir="rtl" className={cairo.variable}>
       <head>
         <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/feed.xml" />
       </head>
