@@ -5,7 +5,7 @@
  */
 
 export const BLOG_CONFIG = {
-  blogName:  'رحلة معافر',
+  blogName:  'نمو يصمد',
   siteTitle: 'مصطفى فؤاد',
 
   // ↓ Canonical origin — used by metadataBase, sitemap, RSS and JSON-LD.
@@ -15,7 +15,7 @@ export const BLOG_CONFIG = {
   //   GA4 is configured inside GTM, not in code.
   gtmId:     'GTM-PJD46LCB',
   // ← Moustafa may replace this line
-  tagline:   'يوميات مؤسس بيبني، بحلوها ومرّها',
+  tagline:   'بناء · قيادة · ذكاء اصطناعي',
 
   // ↓ Author identity. authorRole shows in the author strip and the footer;
   //   authorBio is About-page only since Part C dropped the home sidebar.

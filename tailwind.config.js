@@ -6,7 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // ─── Design System Tokens (رحلة معافر) ───────────────────────────
+      // ─── Design System Tokens (نمو يصمد) ───────────────────────────
       colors: {
         paper:          '#FFFFFF',   // white — main background
         card:           '#FFFFFF',   // white — card backgrounds
