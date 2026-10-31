@@ -6,7 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // ─── Design System Tokens (نمو يصمد) ───────────────────────────
+      // ─── Design System Tokens (Growth That Holds) ───────────────────────────
       colors: {
         paper:          '#FFFFFF',   // white — main background
         card:           '#FFFFFF',   // white — card backgrounds

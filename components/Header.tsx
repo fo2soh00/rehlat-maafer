@@ -15,7 +15,7 @@ export default function Header() {
       <div className="inner">
         <Link href="/" className="brand">
           <span className="dot" />
-          {BLOG_CONFIG.blogName}
+          <bdi dir="ltr">{BLOG_CONFIG.blogName}</bdi>
         </Link>
         <nav>
           <Link href="/" className={onArticles ? 'active' : ''}>المقالات</Link>
