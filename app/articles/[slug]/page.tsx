@@ -8,6 +8,7 @@ import SeriesTrack from '@/components/SeriesTrack'
 import ArticleEnd  from '@/components/ArticleEnd'
 import TagChip     from '@/components/TagChip'
 import Gallery from '@/components/Gallery'
+import Cover   from '@/components/Cover'
 import { BLOG_CONFIG } from '@/lib/config'
 import type { Metadata } from 'next'
 
@@ -144,6 +145,13 @@ export default async function ArticlePage({ params }: Props) {
           fetchPriority="high"
           decoding="async"
         />
+      )}
+
+      {/* No cover image → the designed cover, so every article opens with art. */}
+      {!meta.cover && (
+        <div className="art-cv">
+          <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} size="xl" as="p" />
+        </div>
       )}
 
       {gallery && gallery.length > 0 && (

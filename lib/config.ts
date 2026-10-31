@@ -28,6 +28,14 @@ export const BLOG_CONFIG = {
   // it has a cover), the rest are compact rows.
   cardEvery: 4,
 
+  // ↓ Home layout C.
+  //   homeQuoteSlug: the article whose excerpt fills the dark quote band
+  //   (file name without .md). Empty = the newest non-series article not
+  //   already shown above it.
+  homeQuoteSlug:   '',
+  //   homeScrollerTag: the pillar of the second sideways row (tag name).
+  homeScrollerTag: 'قيادة',
+
   // ↓ Your contact links
   linkedin:  'https://www.linkedin.com/in/moustafa-fouad-81646b2b6/',
   whatsapp:  'https://wa.me/message/7CRHXZWXN44PI1',

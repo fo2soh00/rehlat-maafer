@@ -4,9 +4,10 @@
  * A tag that is not listed here still renders, but as plain text, not a link.
  */
 export const TAGS = [
-  { slug: 'ai',         name: 'ذكاء اصطناعي' },
-  { slug: 'building',   name: 'بناء' },
-  { slug: 'leadership', name: 'قيادة' },
+  // `blurb` is the one-line description under the home pillar scroller.
+  { slug: 'ai',         name: 'ذكاء اصطناعي', blurb: '' },
+  { slug: 'building',   name: 'بناء',         blurb: '' },
+  { slug: 'leadership', name: 'قيادة',        blurb: 'الفريق، المسؤولية، والثقافة' },
 ] as const
 
 export type Tag     = (typeof TAGS)[number]

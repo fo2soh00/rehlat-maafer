@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cairo, Rakkas } from 'next/font/google'
+import { Cairo, Rakkas, DM_Serif_Display } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/Header'
@@ -23,6 +23,14 @@ const rakkas = Rakkas({
   subsets:  ['arabic', 'latin'],
   weight:   '400',
   variable: '--font-rakkas',
+  display:  'swap',
+})
+
+// Latin brand name only (topbar, home hero, cover signature).
+const dmSerif = DM_Serif_Display({
+  subsets:  ['latin'],
+  weight:   '400',
+  variable: '--font-brand',
   display:  'swap',
 })
 
@@ -53,7 +61,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} ${rakkas.variable}`}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${rakkas.variable} ${dmSerif.variable}`}>
       <head>
         <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/feed.xml" />
       </head>
