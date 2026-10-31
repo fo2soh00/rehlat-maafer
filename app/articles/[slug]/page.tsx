@@ -1,7 +1,7 @@
 import fs   from 'fs'
 import path from 'path'
 import Link from 'next/link'
-import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes, imageDimensions } from '@/lib/articles'
+import { getArticleBySlug, getAllSlugs, isoDate, getSeriesEpisodes, imageDimensions, firstBodyImage } from '@/lib/articles'
 import { SERIES, type SeriesKey } from '@/lib/series'
 import { arabicDigits, formatReadTime } from '@/lib/format'
 import SeriesTrack from '@/components/SeriesTrack'
@@ -150,7 +150,7 @@ export default async function ArticlePage({ params }: Props) {
       {/* No cover image → the designed cover, so every article opens with art. */}
       {!meta.cover && (
         <div className="art-cv">
-          <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} size="xl" as="p" />
+          <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} size="xl" as="p" photo={firstBodyImage(contentHtml)} />
         </div>
       )}
 

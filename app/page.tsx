@@ -13,8 +13,9 @@ const SERIES_KEY = 'ai-application'
 /**
  * Home — layout C. Top to bottom: hero · filter · featured · series scroller ·
  * grid of 4 · quote band · 3 text rows · pillar scroller · remaining grid.
- * Every article appears once; the slots are filled in that order from the
- * newest-first list, so a new article simply pushes the others down.
+ * Every article appears once. Slots fill from the newest-first list: the
+ * featured article first, then the pillar scroller's articles are reserved,
+ * then the grids and rows take the rest, so a new article pushes the others down.
  */
 export default function Home() {
   const all      = getAllArticles()
@@ -34,6 +35,12 @@ export default function Home() {
 
   // Featured = newest article outside the series, so the series row stays whole.
   const [featured] = take(essays, 1)
+
+  // The pillar scroller is reserved next, so the grids above it cannot use up
+  // its articles and leave the row empty.
+  const scrollerTag = tagByName(BLOG_CONFIG.homeScrollerTag)
+  const pillarItems = scrollerTag ? take(essays.filter(a => a.meta.tag === scrollerTag.name)) : []
+
   const grid1      = take(essays, 4)
 
   const quoteBySlug = BLOG_CONFIG.homeQuoteSlug
@@ -43,8 +50,6 @@ export default function Home() {
 
   const rows = take(essays, 3)
 
-  const scrollerTag  = tagByName(BLOG_CONFIG.homeScrollerTag)
-  const pillarItems  = scrollerTag ? take(essays.filter(a => a.meta.tag === scrollerTag.name)) : []
   const rest         = take(essays)
 
   const options = [

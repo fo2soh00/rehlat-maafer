@@ -5,7 +5,7 @@ import { TAGS, tagBySlug } from '@/lib/tags'
 import { BLOG_CONFIG } from '@/lib/config'
 import { arabicDigits } from '@/lib/format'
 import FilterRow    from '@/components/FilterRow'
-import ArticleRiver from '@/components/ArticleRiver'
+import { Tile } from '@/components/HomeCards'
 
 interface Props {
   params: { slug: string }
@@ -66,7 +66,7 @@ export default function TagPage({ params }: Props) {
 
       <FilterRow active={tag.slug} />
 
-      <ArticleRiver articles={articles} />
+      <div className="home"><div className="grid2 tag-grid">{articles.map(a => <Tile key={a.slug} a={a} />)}</div></div>
     </div>
   )
 }

@@ -556,3 +556,10 @@ main:has(> .home) { padding-top:8px; }
 }
 .cv-s .cv-ep { font-size:28px; top:12px; }
 .cv-building::before { background:linear-gradient(to top,rgba(60,22,8,.62),rgba(60,22,8,.15) 55%,transparent 75%); }
+
+/* photo covers — a real image fills the box; the gradient keeps chip, episode and title readable */
+.cv-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; background:#2C4A6E; }
+.cv-photo { background:var(--accent); }
+.cv-photo::before { background:linear-gradient(to top,rgba(21,19,15,.86) 0,rgba(21,19,15,.55) 38%,rgba(21,19,15,.12) 70%,rgba(21,19,15,.28) 100%); }
+.cv-photo .cv-pill { background:rgba(21,19,15,.62); }
+.tag-grid { margin-top:22px; }

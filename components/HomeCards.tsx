@@ -29,7 +29,7 @@ export function Featured({ a }: { a: ArticleListItem }) {
   const { meta, slug } = a
   return (
     <article className="feat hit" data-t={tKey(meta.tag)}>
-      <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} size="xl" href={href(slug)} as="h2" />
+      <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} photo={a.photo} size="xl" href={href(slug)} as="h2" />
       <div className="feat-b">
         <span className="lab">الأحدث</span>
         <Meta a={a} />
@@ -44,7 +44,7 @@ export function Tile({ a }: { a: ArticleListItem }) {
   const { meta, slug } = a
   return (
     <article className="tile hit" data-t={tKey(meta.tag)}>
-      <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} size="m" href={href(slug)} />
+      <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} photo={a.photo} size="m" href={href(slug)} />
       <div className="tile-b">
         <Meta a={a} />
         {meta.excerpt && <p className="clamp2">{meta.excerpt}</p>}
@@ -57,7 +57,7 @@ export function ScrollCard({ a }: { a: ArticleListItem }) {
   const { meta, slug } = a
   return (
     <article className="scard hit" data-t={tKey(meta.tag)}>
-      <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} size="s" href={href(slug)} />
+      <Cover slug={slug} title={meta.title} tag={meta.tag} episode={meta.episode} photo={a.photo} size="s" href={href(slug)} />
       {meta.excerpt && <p className="clamp2">{meta.excerpt}</p>}
     </article>
   )

@@ -91,6 +91,31 @@ export interface ArticleMeta {
 export interface ArticleListItem {
   slug: string
   meta: ArticleMeta
+  /** Photo for listing covers — see listPhoto(). Undefined = designed cover. */
+  photo?: string
+}
+
+// ── Listing photo ───────────────────────────────────────────────────────
+// Cards show a real picture when the article has one: the `cover` image,
+// else the first image in the body (markdown ![](…) or raw <img src>), else
+// nothing (the designed cover is drawn). Any path containing «greenola» is
+// skipped so the company's branding stays off the blog's listings.
+
+const OFF_LIMITS = /greenola/i
+
+export function firstBodyImage(body: string): string | undefined {
+  const re = /!\[[^\]]*\]\(\s*<?([^)\s>]+)>?(?:\s+"[^"]*")?\s*\)|<img\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']/gi
+  for (let m = re.exec(body); m; m = re.exec(body)) {
+    const src = m[1] ?? m[2]
+    if (src && !OFF_LIMITS.test(src)) return src
+  }
+  return undefined
+}
+
+export function listPhoto(meta: ArticleMeta, body: string): string | undefined {
+  if (meta.cover && !OFF_LIMITS.test(meta.cover)) return meta.cover
+  if (meta.cover) return undefined   // a Greenola cover means: designed cover, not a body image
+  return firstBodyImage(body)
 }
 
 export interface ArticleFull extends ArticleListItem {
@@ -124,8 +149,9 @@ export function getAllArticles(): ArticleListItem[] {
     .map(fileName => {
       const slug = fileName.replace(/\.md$/, '')
       const raw  = fs.readFileSync(path.join(ARTICLES_DIR, fileName), 'utf8')
-      const { data } = matter(raw)
-      return { slug, meta: data as ArticleMeta }
+      const { data, content } = matter(raw)
+      const meta = data as ArticleMeta
+      return { slug, meta, photo: listPhoto(meta, content) }
     })
     .sort((a, b) => {
       const ap = a.meta.pinned ? 1 : 0

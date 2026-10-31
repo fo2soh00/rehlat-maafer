@@ -25,6 +25,8 @@ interface Props {
   href?:    string
   /** Heading level for the title; article page passes 'p' (h1 lives below). */
   as?:      'h2' | 'h3' | 'p'
+  /** A real photo (see listPhoto). When set it fills the box instead of the art. */
+  photo?:   string
 }
 
 // FNV-1a → mulberry32. Small, deterministic, no dependency.
@@ -97,18 +99,23 @@ function ArtLeadership({ rand }: { rand: () => number }) {
   )
 }
 
-export default function Cover({ slug, title, tag, episode, size, href, as = 'h3' }: Props) {
+export default function Cover({ slug, title, tag, episode, size, href, as = 'h3', photo }: Props) {
   const pillar = (tagByName(tag)?.slug ?? 'ai') as Pillar
   const rand   = rng(seedOf(slug))
   const Title  = as
 
   return (
-    <div className={`cv cv-${size} cv-${pillar}`}>
-      <svg className="cv-art" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        {pillar === 'ai' && <ArtAI rand={rand} />}
-        {pillar === 'building' && <ArtBuilding rand={rand} />}
-        {pillar === 'leadership' && <ArtLeadership rand={rand} />}
-      </svg>
+    <div className={`cv cv-${size} cv-${pillar}${photo ? ' cv-photo' : ''}`}>
+      {photo ? (
+        // eslint-disable-next-line @next/next/no-img-element -- static export, no image optimiser
+        <img className="cv-img" src={photo} alt={title} loading="lazy" decoding="async" />
+      ) : (
+        <svg className="cv-art" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          {pillar === 'ai' && <ArtAI rand={rand} />}
+          {pillar === 'building' && <ArtBuilding rand={rand} />}
+          {pillar === 'leadership' && <ArtLeadership rand={rand} />}
+        </svg>
+      )}
       <span className="cv-pill">{tag}</span>
       {typeof episode === 'number' && <span className="cv-ep">الحلقة {arabicDigits(episode)}</span>}
       <Title className="cv-title">{href ? <Link href={href}>{title}</Link> : title}</Title>
