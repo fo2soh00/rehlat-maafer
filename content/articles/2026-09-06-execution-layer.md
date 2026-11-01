@@ -1,5 +1,5 @@
 ---
-title: " AI Application Ep 05"
+title: "طبقة التنفيذ"
 en_slug: execution-layer
 subtitle: الفرق بين الـ API و الـ connector و الـ MCP, و بين الـ cron و الـ
   webhook, و اللي اتبنى فعلًا بالأرقام

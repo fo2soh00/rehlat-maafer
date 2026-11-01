@@ -1,5 +1,5 @@
 ---
-title: AI applications - EP 03
+title: "تقسيم العملاء على محورين"
 en_slug: crm-behaviour-segments
 subtitle: مين أكلمه بكرة الصبح, و ليه هو بالذات
 date: 2026-08-28

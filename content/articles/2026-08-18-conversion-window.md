@@ -1,5 +1,5 @@
 ---
-title: AI applications - EP 01
+title: "نافذة التحويل"
 en_slug: conversion-window
 subtitle: سؤال واحد, و شغل شهر
 date: 2026-08-18

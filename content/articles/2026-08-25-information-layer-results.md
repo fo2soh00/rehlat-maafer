@@ -1,5 +1,5 @@
 ---
-title: AI applications - EP 02
+title: "طبقة المعلومات"
 en_slug: information-layer-results
 subtitle: الرقم اللي كلّفني شهر, بقى شريط في الشاشة
 date: 2026-08-25

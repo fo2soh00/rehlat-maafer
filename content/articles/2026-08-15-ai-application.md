@@ -1,5 +1,5 @@
 ---
-title: AI Application For Startups & SME
+title: "تطبيق الذكاء الاصطناعي: البداية"
 en_slug: ai-application
 date: "2026-08-15"
 date_ar: ١٥ أغسطس ٢٠٢٦

@@ -4,7 +4,7 @@
  */
 export const SERIES = {
   'ai-application': {
-    title: 'AI Application for Startups & SME',
+    title: 'الذكاء الاصطناعي في الشركات الناشئة والصغيرة',
     total: 10,
     description: null, // null = fall back to episode 0's excerpt on the hub and hero
   },
